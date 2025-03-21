@@ -1,4 +1,4 @@
-import { FileIcon, House, PlusIcon, Settings, User2Icon } from "lucide-react";
+import { FileIcon, House, PlusIcon, Settings, StarIcon, TrendingUp, User2Icon, Utensils } from "lucide-react";
 
 export default {
     NAVLINKS: [
@@ -14,14 +14,19 @@ export default {
             icon: PlusIcon,
         },
         {
-            name: "Vendor Ad",
+            name: "My Ads",
             path: "/dashboard/ads",
-            icon: FileIcon,
+            icon: Utensils,
         },
         {
-            name: "Profile",
+            name: "Reviews",
             path: "",
-            icon: User2Icon,
+            icon: StarIcon,
+        },
+        {
+            name: "Analytics",
+            path: "",
+            icon: TrendingUp,
         },
         {
             name: "Settings",
