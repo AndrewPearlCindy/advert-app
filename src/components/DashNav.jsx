@@ -8,6 +8,10 @@ const DashNav = () => {
     <nav className="w-full bg-white px-4 py-3 shadow-sm">
       {/* Main navbar */}
       <div className="flex items-center justify-between w-full">
+      <div className= " items-center justify-center">
+          <img className="h=[40px] w-[150px]" src={logo} alt="My Profile" />
+
+            </div>
         {/* Search - desktop only */}
         <div className="w-full lg:block flex-1 mx-4">
           <div className="relative">
@@ -26,10 +30,7 @@ const DashNav = () => {
             <div className= " items-center justify-center">
           <img className="h=[40px] w-[150px]" src={logo} alt="vennace" />
             </div>
-            <span className="hidden md:inline ml-2 text-sm font-medium text-gray-700">
-              My Ads
-            </span>
-            <ChevronDownIcon className="hidden md:inline h-4 w-4 ml-1 text-gray-400" />
+          
           </div>
           <BellIcon className="h-5 w-5 text-gray-600 hover:text-gray-800" />
         </div>
