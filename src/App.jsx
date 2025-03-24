@@ -16,6 +16,7 @@ import Favourites from "./pages/user/Favourites";
 import VendorAdCard from "./pages/dashboard/VendorAdCard";
 import VendorReviews from "./pages/dashboard/VendorReviews";
 import VendorProfile from "./pages/dashboard/VendorProfile";
+import DashHome from "./pages/dashboard/DashHome";
 
 
 
@@ -34,6 +35,7 @@ function App() {
         <Route path="/customerlogin" element={<CustomerLogin />} />
 
         <Route path="/dashboard" element={<DashboardLayout />}>
+          <Route path="home" element={<DashHome />} />
           <Route path="analytics" element={<Overview />} />
           <Route path="create-ad" element={<CreateAd />} />
           <Route path="ads" element={<VendorAds />} />
