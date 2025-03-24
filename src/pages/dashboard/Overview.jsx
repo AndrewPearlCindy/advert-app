@@ -5,7 +5,8 @@ import {
   MessageSquare, 
   Phone,
   Star, 
-  Users
+  Users,
+  Instagram
 } from 'lucide-react';
 
 const Overview = () => {
@@ -98,6 +99,39 @@ const Overview = () => {
                   <span className="font-medium">Messages</span>
                 </div>
               </div>
+              <div className="w-1/2 flex flex-col items-center justify-center">
+                <div className="relative h-32 w-32">
+                  {/* Message circle chart placeholder */}
+                  <svg className="h-full w-full" viewBox="0 0 100 100">
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r="40"
+                      fill="transparent"
+                      stroke="#e5e7eb"
+                      strokeWidth="15"
+                    />
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r="40"
+                      fill="transparent"
+                      stroke="#D81B60"
+                      strokeWidth="15"
+                      strokeDasharray={2 * Math.PI * 40}
+                      strokeDashoffset={Math.PI * 40}
+                      transform="rotate(-90 50 50)"
+                    />
+                  </svg>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="text-2xl font-bold">50%</span>
+                  </div>
+                </div>
+                <div className="mt-4 flex items-center">
+                  <Instagram size={20} className="text-pink-600 mr-2" />
+                  <span className="font-medium">Instagram</span>
+                </div>
+              </div>
             </div>
           </div>
           
@@ -139,37 +173,6 @@ const Overview = () => {
           </div>
         </div>
         
-        {/* Recent Reviews */}
-        <div className="bg-white rounded-lg shadow overflow-hidden">
-          <div className="px-6 py-4 border-b border-gray-200">
-            <h2 className="text-lg font-medium">Recent Reviews</h2>
-          </div>
-          <div className="divide-y divide-gray-200">
-            {[1, 2, 3].map((review) => (
-              <div key={review} className="px-6 py-4">
-                <div className="flex justify-between">
-                  <span className="font-medium text-gray-900">Customer Name</span>
-                  <span className="text-gray-500 text-sm">Date</span>
-                </div>
-                <div className="flex items-center mt-1">
-                  <div className="flex">
-                    {[...Array(5)].map((_, i) => (
-                      <Star 
-                        key={i} 
-                        size={16} 
-                        className={i < 4 ? "text-yellow-400 fill-current" : "text-gray-300"} 
-                      />
-                    ))}
-                  </div>
-                </div>
-                <p className="mt-2 text-gray-600">Review comment placeholder</p>
-              </div>
-            ))}
-          </div>
-          <div className="px-6 py-4 bg-gray-50">
-            <button className="text-indigo-600 hover:text-indigo-900 font-medium">View all reviews</button>
-          </div>
-        </div>
       </main>
     </div>
   );

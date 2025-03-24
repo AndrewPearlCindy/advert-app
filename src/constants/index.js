@@ -4,12 +4,12 @@ export default {
     NAVLINKS: [
 
         {
-            name: "Overview",
-            path: "/dashboard",
-            icon: House,
+            name: "Analytics",
+            path: "/dashboard/analytics",
+            icon: TrendingUp,
         },
         {
-            name: "Add Ad",
+            name: "Create Ad",
             path: "/dashboard/create-ad",
             icon: PlusIcon,
         },
@@ -20,19 +20,14 @@ export default {
         },
         {
             name: "Reviews",
-            path: "",
+            path: "/dashboard/reviews",
             icon: StarIcon,
         },
         {
-            name: "Analytics",
-            path: "",
-            icon: TrendingUp,
+            name: "My Profile",
+            path: "/dashboard/myprofile",
+            icon: House,
         },
-        {
-            name: "Settings",
-            path: "",
-            icon: Settings,
-        }
 
     ]
     
