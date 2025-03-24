@@ -13,6 +13,10 @@ import CustomerLogin from "./pages/auth/CustomerLogin";
 import Adverts from "./pages/user/Adverts";
 import SingleAd from "./pages/user/SingleAd";
 import Favourites from "./pages/user/Favourites";
+import VendorAdCard from "./pages/dashboard/VendorAdCard";
+import VendorReviews from "./pages/dashboard/VendorReviews";
+import VendorProfile from "./pages/dashboard/VendorProfile";
+
 
 
 function App() {
@@ -30,9 +34,12 @@ function App() {
         <Route path="/customerlogin" element={<CustomerLogin />} />
 
         <Route path="/dashboard" element={<DashboardLayout />}>
-          <Route index={true} element={<Overview />} />
+          <Route path="analytics" element={<Overview />} />
           <Route path="create-ad" element={<CreateAd />} />
           <Route path="ads" element={<VendorAds />} />
+          <Route path="single-ad" element={<VendorAdCard />} />
+          <Route path="reviews" element={<VendorReviews />} />
+          <Route path="myprofile" element={<VendorProfile />} />
         </Route>
 
       </Routes>
