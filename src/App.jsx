@@ -7,18 +7,16 @@ import VendorAds from "./pages/dashboard/VendorAds";
 import CreateAd from "./pages/dashboard/CreateAd";
 import Overview from "./pages/dashboard/Overview";
 import DashboardLayout from "./layout/DashboardLayout";
-import VendorOrUser from "./pages/auth/VendorOrUser";
-import VendorLogin from "./pages/auth/VendorLogin";
-import CustomerLogin from "./pages/auth/CustomerLogin";
 import Adverts from "./pages/user/Adverts";
 import SingleAd from "./pages/user/SingleAd";
 import Favourites from "./pages/user/Favourites";
+import Signup from "./pages/auth/Signup";
+import Login from "./pages/auth/Login";
+import Verification from "./pages/auth/Verification";
 import VendorAdCard from "./pages/dashboard/VendorAdCard";
 import VendorReviews from "./pages/dashboard/VendorReviews";
 import VendorProfile from "./pages/dashboard/VendorProfile";
 import DashHome from "./pages/dashboard/DashHome";
-
-
 
 function App() {
   return (
@@ -30,9 +28,9 @@ function App() {
           <Route path="adverts/:id" element={<SingleAd />} />
           <Route path="adverts/:id:favs" element={<Favourites />} />
         </Route>
-        <Route path="/vendororuser" element={<VendorOrUser />} />
-        <Route path="/vendorlogin" element={<VendorLogin />} />
-        <Route path="/customerlogin" element={<CustomerLogin />} />
+        <Route path="/verification" element={<Verification />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
 
         <Route path="/dashboard" element={<DashboardLayout />}>
           <Route path="home" element={<DashHome />} />
@@ -43,7 +41,6 @@ function App() {
           <Route path="reviews" element={<VendorReviews />} />
           <Route path="myprofile" element={<VendorProfile />} />
         </Route>
-
       </Routes>
     </BrowserRouter>
   );

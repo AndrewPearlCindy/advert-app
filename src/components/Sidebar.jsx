@@ -11,7 +11,8 @@ import {
   Plus as PlusIcon, 
   Utensils,
   Menu,
-  X
+  X,
+  HouseIcon
 } from "lucide-react"; // Import icons including Menu for mobile toggle
 import logo from "../assets/images/logoname.png";
 
@@ -74,23 +75,28 @@ const Sidebar = () => {
 
             switch (link.name) {
               case "Dashboard":
-                iconComponent = <House size={18} className="group-hover:rotate-12 transition-transform duration-200"/>;
+                iconComponent = <House size={18} />;
                 break;
               case "Create Ad":
                 iconComponent = <PlusIcon size={18} className="group-hover:rotate-12 transition-transform duration-200"/>;
+                iconComponent = <PlusIcon size={18} />;
                 break;
               case "My Ads":
-                iconComponent = <Utensils size={18} className="group-hover:rotate-12 transition-transform duration-200"/>;
+                iconComponent = <Utensils size={18} />;
                 break;
               case "Reviews":
-                iconComponent = <StarIcon size={18} className="group-hover:rotate-12 transition-transform duration-200"/>;
+                iconComponent = <StarIcon size={18} />;
                 break;
               case "Analytics":
-                iconComponent = <TrendingUp size={18} className="group-hover:rotate-12 transition-transform duration-200"/>;
+                iconComponent = <TrendingUp size={18} />;
                 break;
              
               default:
+
                 iconComponent = <House size={18} />; // Default icon
+
+                iconComponent = <HouseIcon size={18} />; // Default icon
+
             }
 
             return (
