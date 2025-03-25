@@ -13,6 +13,10 @@ import Favourites from "./pages/user/Favourites";
 import Signup from "./pages/auth/Signup";
 import Login from "./pages/auth/Login";
 import Verification from "./pages/auth/Verification";
+import VendorAdCard from "./pages/dashboard/VendorAdCard";
+import VendorReviews from "./pages/dashboard/VendorReviews";
+import VendorProfile from "./pages/dashboard/VendorProfile";
+import DashHome from "./pages/dashboard/DashHome";
 
 function App() {
   return (
@@ -29,9 +33,13 @@ function App() {
         <Route path="/signup" element={<Signup />} />
 
         <Route path="/dashboard" element={<DashboardLayout />}>
-          <Route index={true} element={<Overview />} />
+          <Route path="home" element={<DashHome />} />
+          <Route path="analytics" element={<Overview />} />
           <Route path="create-ad" element={<CreateAd />} />
           <Route path="ads" element={<VendorAds />} />
+          <Route path="single-ad" element={<VendorAdCard />} />
+          <Route path="reviews" element={<VendorReviews />} />
+          <Route path="myprofile" element={<VendorProfile />} />
         </Route>
       </Routes>
     </BrowserRouter>
