@@ -2,16 +2,23 @@ import { BellIcon, ChevronDownIcon, SearchIcon } from "lucide-react";
 import React from "react";
 import logo from "../assets/images/logoname.png";
 
-
 const DashNav = () => {
   return (
     <nav className="w-full bg-white px-4 py-3 shadow-sm">
-      {/* Main navbar */}
       <div className="flex items-center justify-between w-full">
-      <div className= " items-center justify-center">
-          <img className="h=[40px] w-[150px]" src={logo} alt="My Profile" />
 
+                  {/* Vendor Profile Picture - Circle */}
+                  <div className="flex items-center">
+            <div className="h-10 w-10 rounded-full overflow-hidden border-2 border-gray-200 flex items-center justify-center bg-gray-100">
+              <img 
+                className="h-full w-full object-cover" 
+                src="/api/placeholder/200/200" 
+                alt="Vendor Profile" 
+              />
             </div>
+          </div>
+
+        
         {/* Search - desktop only */}
         <div className="w-full lg:block flex-1 mx-4">
           <div className="relative">
@@ -26,13 +33,13 @@ const DashNav = () => {
 
         {/* Right-side items */}
         <div className="flex items-center gap-4 ml-4">
-          <div className="flex items-center">
-            <div className= " items-center justify-center">
-          <img className="h=[40px] w-[150px]" src={logo} alt="vennace" />
-            </div>
+        {/* Logo */}
+        <div className="flex items-center justify-center">
+          <img className="h-10 w-auto" src={logo} alt="Logo" />
+        </div>
           
-          </div>
-          <BellIcon className="h-5 w-5 text-gray-600 hover:text-gray-800" />
+          {/* Notification Bell */}
+          <BellIcon className="h-5 w-5 text-gray-600 hover:text-gray-800 cursor-pointer" />
         </div>
       </div>
     </nav>
