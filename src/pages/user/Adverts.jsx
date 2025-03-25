@@ -1,12 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import pancake from "../../assets/images/pancake.jpg";
 import mac from "../../assets/images/mac.jpg";
 import burger from "../../assets/images/burger.jpg";
+import { apiGetAllAdvert } from '../../services/adverts'
 
 const Adverts = () => {
   const [activeCategory, setActiveCategory] = useState("all");
   const navigate = useNavigate();
+  
+  const fetchAds =async ()=>{
+    try {
+    const res = await  apiGetAllAdvert();
+    console.log(res);
+    } catch (error) {
+     console.log(error);
+    }finally {
+      setIsLoading(false);
+    }
+  };
+  useEffect(() => {
+    fetchAds();
+  })
 
   // Food categories with items
   const categories = [
