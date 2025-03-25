@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Upload, DollarSign, Tag, FileText, Utensils, X, CheckCircle, AlertCircle } from 'lucide-react';
+import { Upload, DollarSign, Tag, FileText, Utensils, X, CheckCircle, AlertCircle, BadgeCentIcon, BadgeCent } from 'lucide-react';
 
 const CreateAd = () => {
   const [formData, setFormData] = useState({
@@ -195,7 +195,7 @@ const CreateAd = () => {
         {/* Price */}
         <div>
           <label className="block text-gray-700 font-medium mb-1 sm:mb-2">
-            <DollarSign className="inline mr-1 sm:mr-2" size={16} />
+            <BadgeCent className="inline mr-1 sm:mr-2" size={16} />
             Price
           </label>
           <div className="relative">
@@ -276,7 +276,7 @@ const CreateAd = () => {
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300 flex items-center justify-center"
+          className="w-full bg-red-400 text-white py-2 px-4 rounded-lg hover:bg-red-500 transition duration-300 flex items-center justify-center"
         >
           Post Ad
         </button>

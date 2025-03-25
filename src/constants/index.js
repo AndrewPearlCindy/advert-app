@@ -4,6 +4,11 @@ export default {
     NAVLINKS: [
 
         {
+            name: "Home",
+            path: "/dashboard/home",
+            icon: House,
+        },
+        {
             name: "Analytics",
             path: "/dashboard/analytics",
             icon: TrendingUp,
@@ -26,7 +31,7 @@ export default {
         {
             name: "My Profile",
             path: "/dashboard/myprofile",
-            icon: House,
+            icon: User2Icon,
         },
 
     ]
