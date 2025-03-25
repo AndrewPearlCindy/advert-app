@@ -14,7 +14,6 @@ import Adverts from "./pages/user/Adverts";
 import SingleAd from "./pages/user/SingleAd";
 import Favourites from "./pages/user/Favourites";
 
-
 function App() {
   return (
     <BrowserRouter>
@@ -34,7 +33,6 @@ function App() {
           <Route path="create-ad" element={<CreateAd />} />
           <Route path="ads" element={<VendorAds />} />
         </Route>
-
       </Routes>
     </BrowserRouter>
   );
