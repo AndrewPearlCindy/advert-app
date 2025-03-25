@@ -3,14 +3,15 @@ import pasta from "../../assets/images/pasta.jpg"
 import dessert from "../../assets/images/dessert.jpg"
 import drinks from "../../assets/images/drinks.jpg"
 import beans from "../../assets/images/beans.jpg"
-import logo from "../../assets/images/logo.png"
+import Venn from "../../assets/images/Venn.png"
 
 const Landing = () => {
   return (
-    <div className= "bg-[url(assets/images/fruit.png)]  bg-cover bg-center bg-fixed opacity-70 brightness-100">
+    <div 
+    className= "bg-[url(assets/images/fruit.png)]  bg-cover bg-center bg-fixed ">
       {/* Hero Section */}
       <div className="flex flex-col items-center justify-center px-4 py-20 text-center">
-        <img src={logo} className="w-80" alt="logo" />
+        <img src={Venn} className="w-120" alt="Venn" />
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-6">
           {/* VENNACE */}
         </h1>

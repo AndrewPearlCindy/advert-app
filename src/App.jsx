@@ -19,7 +19,6 @@ import VendorProfile from "./pages/dashboard/VendorProfile";
 import DashHome from "./pages/dashboard/DashHome";
 
 
-
 function App() {
   return (
     <BrowserRouter>
@@ -43,7 +42,6 @@ function App() {
           <Route path="reviews" element={<VendorReviews />} />
           <Route path="myprofile" element={<VendorProfile />} />
         </Route>
-
       </Routes>
     </BrowserRouter>
   );
