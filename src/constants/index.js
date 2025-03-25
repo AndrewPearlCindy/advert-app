@@ -31,7 +31,7 @@ export default {
         {
             name: "My Profile",
             path: "/dashboard/myprofile",
-            icon: House,
+            icon: User2Icon,
         },
 
     ]

@@ -78,6 +78,7 @@ const Sidebar = () => {
                 iconComponent = <House size={18} />;
                 break;
               case "Create Ad":
+                iconComponent = <PlusIcon size={18} className="group-hover:rotate-12 transition-transform duration-200"/>;
                 iconComponent = <PlusIcon size={18} />;
                 break;
               case "My Ads":
@@ -91,7 +92,11 @@ const Sidebar = () => {
                 break;
              
               default:
+
+                iconComponent = <House size={18} />; // Default icon
+
                 iconComponent = <HouseIcon size={18} />; // Default icon
+
             }
 
             return (

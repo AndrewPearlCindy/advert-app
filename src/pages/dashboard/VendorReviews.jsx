@@ -145,13 +145,6 @@ const VendorReviews = () => {
             <span className="text-gray-500 ml-2">({stats.total} reviews)</span>
           </div>
         </div>
-
-        <div className="mt-4 md:mt-0">
-          <div className="flex items-center text-sm text-gray-500 mb-2">
-            <Filter size={16} className="mr-2" />
-            <span>Filter reviews by rating:</span>
-          </div>
-        </div>
       </div>
 
       {/* Rating filter buttons */}
