@@ -8,7 +8,12 @@ export const apiAddAdvert = async (payload) => {
   });
 };
 
-export const apiGetAllAdvert = async () => apiCLinet.get("/adverts");
+export const apiGetAllAdvert = async () =>
+  apiCLinet.get("/adverts", {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+    },
+  });
 
 export const apiGetVendorAdvert = async () =>
   apiCLinet.get("/vendor-adverts", {
@@ -20,4 +25,9 @@ export const apiGetVendorAdvert = async () =>
 export const apiUpdateAdvert = async (id, payload) =>
   apiCLinet.patch(`/adverts/${id}`, payload);
 
-export const apiGetSingleAdvert = async (id) => apiCLinet.get(`/adverts/${id}`);
+export const apiGetSingleAdvert = async (id) =>
+  apiCLinet.get(`/adverts/${id}`, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+    },
+  });

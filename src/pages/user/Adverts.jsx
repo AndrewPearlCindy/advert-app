@@ -1,247 +1,28 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import pancake from "../../assets/images/pancake.jpg";
 import mac from "../../assets/images/mac.jpg";
 import burger from "../../assets/images/burger.jpg";
-import { apiGetAllAdvert } from '../../services/adverts'
+import { apiGetAllAdvert } from "../../services/adverts";
 
 const Adverts = () => {
   const [activeCategory, setActiveCategory] = useState("all");
   const navigate = useNavigate();
-  
-  const fetchAds =async ()=>{
+  const [ads, setAds] = useState([]);
+  const imageURL = "https://res.cloudinary.com/dyfpxokoj/image/upload/";
+
+  const getAds = async () => {
     try {
-    const res = await  apiGetAllAdvert();
-    console.log(res);
+      const response = await apiGetAllAdvert();
+      setAds(response.data.adverts);
     } catch (error) {
-     console.log(error);
-    }finally {
-      setIsLoading(false);
+      console.log(error);
     }
   };
+
   useEffect(() => {
-    fetchAds();
-  })
-
-  // Food categories with items
-  const categories = [
-    {
-      id: "Local-food",
-      name: "Local Food",
-      description: "Authentic flavors from local streets and food trucks",
-      items: [
-        {
-          id: "s1",
-          foodname: "",
-         description: "",
-          price: "",
-          image: "/api/placeholder/400/320",
-          category: "",
-          rating: 4.7,
-          
-          
-        },
-        {
-          id: "s2",
-          foodname: "",
-          description:"",
-          price: "",
-          image: "/api/placeholder/400/320",
-          category: "",
-          rating: 4.5,
-          
-          
-        },
-        {
-          id: "s3",
-          foodname: "",
-          description:"",
-          price: "",
-          image: "/api/placeholder/400/320",
-          category: "",
-          rating: 4.8,
-          
-          
-        },
-        {
-          id: "s4",
-          foodname: "",
-          description:"",
-          price: "",
-          image: "/api/placeholder/400/320",
-          category: "",
-          rating: 4.3,
-          
-         
-        },
-        
-      ],
-    },
-    {
-      id: "continental",
-      name: "Continental",
-      description: "Continental meals made with love ❤️",
-      items: [
-        {
-          id: "h1",
-          foodname: "",
-          description:"",
-          price: "",
-          image: "/api/placeholder/400/320",
-          category: "",
-          rating: 4.9,
-          
-          
-        },
-        {
-          id: "h2",
-          foodname: "",
-          description:"",
-          price: "",
-          image: "/api/placeholder/400/320",
-          category: "",
-          rating: 4.6,
-          
-          
-        },
-        {
-          id: "h3",
-          foodname: "",
-          description: "",
-          price: "",
-          image: "/api/placeholder/400/320",
-          category: "",
-          rating: 4.7,
-          
-          
-        },
-        {
-          id: "h4",
-          foodname: "",
-          description: "",
-          image: "/api/placeholder/400/320",
-          price: "",
-          category: "",
-          rating: 4.5,
-          
-          
-        },
-        
-      ],
-    },
-    {
-      id: "desserts",
-      name: "Desserts",
-      description: "Sweet treats to satisfy your cravings",
-      items: [
-        {
-          id: "d1",
-          foodname: "",
-          description:"",
-          image: "/api/placeholder/400/320",
-          price: "",
-          category: "",
-          rating: 4.8,
-          
-          
-        },
-        {
-          id: "d2",
-          foodname: "",
-          description: "",
-          price: "",
-          image: "/api/placeholder/400/320",
-          category: "",
-          rating: 4.9,
-          
-          
-        },
-        {
-          id: "d3",
-          foodname: "",
-          description: "",
-          price: "",
-          image: "/api/placeholder/400/320",
-          category: "",
-          rating: 4.7,
-        
-          
-        },
-        {
-          id: "d4",
-          foodname: "",
-          description: "",
-          price: "",
-          image: "/api/placeholder/400/320",
-          category: "",
-          rating: 4.6,
-          
-          
-        },
-        
-      ],
-    },
-    {
-      id: "drinks",
-      name: "Drinks",
-      description:
-        "Nutritious and delicious options for health-conscious foodies",
-      items: [
-        {
-          id: "he1",
-          foodname: "",
-          description: "",
-          image: "/api/placeholder/400/320",
-          price: "",
-          category: "",
-          rating: 4.6,
-          
-          
-        },
-        {
-          id: "he2",
-          foodname: "",
-          description: "",
-          price: "",
-          image: "/api/placeholder/400/320",
-          category: "",
-          rating: 4.7,
-          
-          
-        },
-        {
-          id: "he3",
-          name: "",
-          description: "",
-          price: "",
-          image: "/api/placeholder/400/320",
-          category: "",
-          rating: 4.9,
-    
-          
-        },
-        {
-          id: "he4",
-          foodname: "",
-          description: "",
-          price: "",
-          image: "/api/placeholder/400/320",
-          category: "",
-          rating: 4.5,
-          
-          
-        },
-        
-      ],
-    },
-  ];
-
-  // Filter food items based on category
-  const displayedItems =
-    activeCategory === "all"
-      ? categories.flatMap((category) => category.items)
-      : categories.find((category) => category.id === activeCategory)?.items ||
-        [];
+    getAds();
+  }, []);
 
   return (
     <div className="min-h-screen bg-pink-100">
@@ -276,87 +57,77 @@ const Adverts = () => {
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <button
-              onClick={() => setActiveCategory("all")}
-              className={`px-6 py-2 rounded-full font-medium ${
-                activeCategory === "all"
-                  ? "bg-white text-red-600"
-                  : "bg-red-600 text-white"
-              }`}
+              // onClick={() => setActiveCategory("all")}
+              className="px-6 py-2 rounded-full font-medium"
+
+              // activeCategory === "all"
+              //   ? "bg-white text-red-600"
+              //   : "bg-red-600 text-white"
             >
               All Foods
             </button>
-            {categories.map((category) => (
-              <button
-                key={category.id}
-                onClick={() => setActiveCategory(category.id)}
-                className={`px-6 py-2 rounded-full font-medium ${
-                  activeCategory === category.id
-                    ? "bg-white text-red-600"
-                    : "bg-red-600 text-white"
-                }`}
-              >
-                {category.name}
-              </button>
-            ))}
+            <button
+              className="px-6 py-2 rounded-full font-medium"
+              //   activeCategory === category.id
+              //     ? "bg-white text-red-600"
+              //     : "bg-red-600 text-white"
+              // }`}
+            >
+              category name
+            </button>
           </div>
         </div>
       </div>
 
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 py-12">
-        {/* Category Header - only show if a specific category is selected */}
-        {activeCategory !== "all" && (
-          <div className="mb-12 text-center">
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">
-              {categories.find((c) => c.id === activeCategory)?.name}
-            </h2>
-            <p className="text-xl text-gray-600">
-              {categories.find((c) => c.id === activeCategory)?.description}
-            </p>
-          </div>
-        )}
-
         {/* Food Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-          {displayedItems.map((item) => (
-            <div
-              key={item.id}
-              className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300"
-            >
-              <div className="h-48 overflow-hidden">
-                <img
-                  src={item.image}
-                  alt={item.name}
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-              <div className="p-6">
-                <div className="flex justify-between items-start mb-2">
-                  <h3 className="font-bold text-xl text-gray-800">
-                    {item.name}
-                  </h3>
-                  <span className="bg-orange-100 text-red-800 text-sm font-semibold px-2.5 py-0.5 rounded-full">
-                    ₵{item.price}
-                  </span>
+          {ads.map((ad) => {
+            return (
+              <div
+                key={ad.id}
+                className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300"
+              >
+                <div className="h-48 overflow-hidden">
+                  <img
+                    src={`${imageURL}${ad.pictures[0]}`}
+                    alt="item name"
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                  />
                 </div>
-                {/* <p className="text-gray-600 mb-4">By {item.vendor}</p> */}
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center">
-                    <svg className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                    </svg>
-                    <span className="ml-1 text-gray-700">{item.rating}</span>
+                <div className="p-6">
+                  <div className="flex justify-between items-start mb-2">
+                    <h3 className="font-bold text-xl text-gray-800">
+                      {ad.foodname}
+                    </h3>
+                    <span className="bg-orange-100 text-red-800 text-sm font-semibold px-2.5 py-0.5 rounded-full">
+                      {ad.price}
+                    </span>
                   </div>
-                  <button className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg text-sm transition duration-300"
-                  onClick={() => navigate("SingleAd")}
-                  >
-                  
-                    View More
-                  </button>
+                  {/* <p className="text-gray-600 mb-4">By {item.vendor}</p> */}
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center">
+                      <svg
+                        className="w-5 h-5 text-yellow-400"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                      </svg>
+                      <span className="ml-1 text-gray-700">item.rating</span>
+                    </div>
+                    <Link
+                      to={`/adverts/${ad.id}`}
+                      className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg text-sm transition duration-300"
+                    >
+                      View More
+                    </Link>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 
