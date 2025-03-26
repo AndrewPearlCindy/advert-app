@@ -100,7 +100,7 @@ const VendorAdCard = () => {
 
               {/* Action buttons */}
               <div className="mt-6 flex space-x-2">
-             <Link to="/dashboard/single-ad">
+             <Link to={`/dashboard/single-ad/${ad.id}`}>
              <button className="flex items-center justify-center bg-white border border-red-500 text-red-500 hover:bg-red-300 py-2 px-4 rounded-lg transition duration-300">
                   <MoreHorizontal size={16} />
                 </button>

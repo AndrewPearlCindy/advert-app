@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Trash2,
   Edit,
@@ -12,8 +12,27 @@ import {
   ArrowBigLeft,
 } from "lucide-react";
 import { Link } from "react-router-dom"
+import { apiGetVendorAdvert } from "../../services/adverts";
 
 const VendorAdCard = () => {
+const{ id } = useParams();
+
+const [ad, setAd] = useState({});
+
+const getAd = async () => {
+
+  try {
+    const response = await apiGetVendorAdvert(id);
+    console.log(response.data);
+  } catch (error) {
+    console.log (error)
+  }
+};
+
+useEffect (() => {
+  getAd();
+}, []);
+
   return (
     <div className="bg-red-100 rounded-lg shadow-md overflow-hidden max-w-md mx-auto my-16">
       {/* Image Carousel */}

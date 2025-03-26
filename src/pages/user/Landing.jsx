@@ -4,6 +4,7 @@ import dessert from "../../assets/images/dessert.jpg"
 import drinks from "../../assets/images/drinks.jpg"
 import beans from "../../assets/images/beans.jpg"
 import Venn from "../../assets/images/Venn.png"
+import { Link } from "react-router-dom"
 
 const Landing = () => {
   return (
@@ -23,9 +24,11 @@ const Landing = () => {
           area.
         </p>
         <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 mb-12">
-          <button className="bg-red-600 hover:bg-red-400 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300">
+         <Link to="/login">
+         <button className="bg-red-600 hover:bg-red-400 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300">
             Get Started
           </button>
+         </Link>
           {/* <button className="bg-white hover:bg-gray-100 text-orange-500 font-bold py-3 px-8 rounded-full shadow-lg border border-orange-500 transition duration-300">
             Become a Vendor
           </button> */}
