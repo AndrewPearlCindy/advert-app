@@ -1,11 +1,23 @@
 import { apiCLinet } from "./config";
 
-export const apiAddAdvert = async(payload) => apiCLinet.post("/adverts", payload);
+export const apiAddAdvert = async (payload) => {
+  return apiCLinet.post("/adverts", payload, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+    },
+  });
+};
 
-export const apiGetAllAdvert = async() => apiCLinet.get("/adverts");
+export const apiGetAllAdvert = async () => apiCLinet.get("/adverts");
 
-export const apiGetVendorAdvert = async() => apiCLinet.get("/vendor-adverts");
+export const apiGetVendorAdvert = async () =>
+  apiCLinet.get("/vendor-adverts", {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+    },
+  });
 
-export const apiUpdateAdvert = async(id, payload) => apiCLinet.patch(`/adverts/${id}`, payload);
+export const apiUpdateAdvert = async (id, payload) =>
+  apiCLinet.patch(`/adverts/${id}`, payload);
 
-export const apiGetSingleAdvert = async(id) => apiCLinet.get(`/adverts/${id}`);
+export const apiGetSingleAdvert = async (id) => apiCLinet.get(`/adverts/${id}`);

@@ -51,7 +51,7 @@ const DashHome = () => {
       <section className="bg-white py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h3 className="text-3xl font-bold text-center mb-8 text-gray-800">
-            Why Use FoodAds?
+            Why Use Vennace For Your Food Ads?
           </h3>
           <div className="grid md:grid-cols-3 gap-6">
             <div className="bg-gray-100 p-6 rounded-lg text-center">
@@ -82,13 +82,6 @@ const DashHome = () => {
   );
 };
 
-export default DashHome;
-import React from 'react'
 
-const DashHome = () => {
-  return (
-    <div>DashHome</div>
-  )
-}
 
 export default DashHome
