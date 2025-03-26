@@ -1,10 +1,13 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router";
 
 const Login = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+
+  const navigate=useNavigate()
 
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
@@ -47,13 +50,16 @@ const Login = () => {
     setServerError("");
 
     try {
-      const response = await fetch("https://advertisement-system.onrender.com/api/v1/users/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        "https://advertisement-system.onrender.com/api/v1/users/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
       const data = await response.json();
 
@@ -65,10 +71,10 @@ const Login = () => {
 
       // Store token in local storage (if applicable)
       localStorage.setItem("authToken", data.token);
+      navigate('/dashboard/home')
 
       // Redirect or navigate to dashboard
       alert("Login Successful!");
-
     } catch (error) {
       console.error("Error logging in:", error.message);
       setServerError(error.message);
@@ -82,15 +88,22 @@ const Login = () => {
       <div className="max-w-md w-full bg-white p-6 rounded-lg shadow-md">
         <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
 
-        {serverError && <p className="text-red-500 text-center mb-4">{serverError}</p>}
+        {serverError && (
+          <p className="text-red-500 text-center mb-4">{serverError}</p>
+        )}
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} >
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="email"
+            >
               E-Mail *
             </label>
             <input
-              className={`w-full px-3 py-2 border rounded-lg ${errors.email ? "border-red-500" : "border-gray-300"}`}
+              className={`w-full px-3 py-2 border rounded-lg ${
+                errors.email ? "border-red-500" : "border-gray-300"
+              }`}
               type="email"
               id="email"
               name="email"
@@ -98,15 +111,22 @@ const Login = () => {
               onChange={handleChange}
               placeholder="Enter your email"
             />
-            {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
+            {errors.email && (
+              <p className="text-red-500 text-xs mt-1">{errors.email}</p>
+            )}
           </div>
 
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="password"
+            >
               Password *
             </label>
             <input
-              className={`w-full px-3 py-2 border rounded-lg ${errors.password ? "border-red-500" : "border-gray-300"}`}
+              className={`w-full px-3 py-2 border rounded-lg ${
+                errors.password ? "border-red-500" : "border-gray-300"
+              }`}
               type="password"
               id="password"
               name="password"
@@ -114,7 +134,9 @@ const Login = () => {
               onChange={handleChange}
               placeholder="Enter your password"
             />
-            {errors.password && <p className="text-red-500 text-xs mt-1">{errors.password}</p>}
+            {errors.password && (
+              <p className="text-red-500 text-xs mt-1">{errors.password}</p>
+            )}
           </div>
 
           <div className="mt-6">
