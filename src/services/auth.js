@@ -7,3 +7,8 @@ export const apiSignup = async(payload) => {
 export const apiLogin = async(payload) => {
     return apiCLinet.post("/users/login", payload)
 }
+
+export const apiVerifyEmail = async (payload) => {
+    return apiCLinet.post("/users/verify-email", payload);
+  };
+  

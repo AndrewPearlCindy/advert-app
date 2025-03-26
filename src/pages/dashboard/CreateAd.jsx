@@ -110,7 +110,7 @@ const CreateAd = () => {
 
         {/* Image Upload */}
         <div>
-          <label className="block text-gray-700 font-medium mb-1 sm:mb-2">
+          <label className="text-gray-700 font-medium mb-1 sm:mb-2">
             <Upload className="inline mr-1 sm:mr-2 " size={16} />
             Food Images (Upload 3)
           </label>
@@ -135,13 +135,7 @@ const CreateAd = () => {
           </div>
         </div>
 
-        {/* Image Upload 
-     <div>
-//           <label className="block text-gray-700 font-medium mb-1 sm:mb-2">
-//             <Upload className="inline mr-1 sm:mr-2" size={16} />
-//             Food Images (Upload 3)
-//           </label>
-//           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+        {/* 
 //             {[0, 1, 2].map((index) => ( 
            <div key={index} className="flex flex-col items-center"> 
             <div

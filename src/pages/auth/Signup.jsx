@@ -1,12 +1,15 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router";
+
 const Signup = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    fullName: "",
     username: "",
+    email: "",
     password: "",
     role: "consumer", // Default role
     shopName: "",
-    whatsappContact: "",
+    socialMediaLink: "",
     openHours: "",
     profilePicture: null,
   });
@@ -20,7 +23,6 @@ const Signup = () => {
       [name]: value,
     });
 
-    // Clear validation errors when field is changed
     if (errors[name]) {
       setErrors({
         ...errors,
@@ -39,38 +41,62 @@ const Signup = () => {
   const validateForm = () => {
     const newErrors = {};
 
-    // Validate required fields for all users
-    if (!formData.email) newErrors.email = "Full name is required";
+    if (!formData.email) newErrors.email = "Email is required";
     if (!formData.username) newErrors.username = "Username is required";
     if (!formData.password) newErrors.password = "Password is required";
     else if (formData.password.length < 6)
       newErrors.password = "Password must be at least 6 characters";
 
-    // Validate required fields for vendors only
     if (formData.role === "vendor") {
       if (!formData.shopName) newErrors.shopName = "Shop name is required";
-      if (!formData.socialMediaHandle)
-        newErrors.socialMediaHandle = "Social Media Handle is required";
+      if (!formData.socialMediaLink)
+        newErrors.socialMediaLink = "Social Media link is required";
       if (!formData.openHours) newErrors.openHours = "Open hours are required";
     }
 
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("clicked");
 
     const validationErrors = validateForm();
     if (Object.keys(validationErrors).length > 0) {
+      console.log(validationErrors);
       setErrors(validationErrors);
       return;
     }
 
-    // Form is valid, proceed with submission
-    console.log("Form submitted:", formData);
-    // Here you would typically send the data to your backend
-  };
+    const formDataToSend = new FormData();
+    Object.keys(formData).forEach((key) => {
+      if (formData[key]) {
+        formDataToSend.append(key, formData[key]);
+      }
+    });
 
+    try {
+      const response = await fetch(
+        "https://advertisement-system.onrender.com/api/v1/users/register",
+        {
+          method: "POST",
+          body: formDataToSend,
+        }
+      );
+
+      const data = await response.json();
+      console.log("here too");
+
+      if (!response.ok) {
+        throw new Error(data.message || "Something went wrong");
+      }
+
+      alert("Registration successful!");
+      navigate("/verification");
+    } catch (error) {
+      alert(error.message);
+    }
+  };
   return (
     <div className="min-h-screen flex items-center justify-center bg-[url('assets/images/Vendorloginbg.jpg')]">
       <div className="max-w-md w-full bg-white p-6 rounded-lg shadow-md ">
@@ -151,6 +177,31 @@ const Signup = () => {
             )}
           </div>
 
+          {/* Confirm Password */}
+          <div className="mb-4">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="confirmPassword"
+            >
+              Confirm Password *
+            </label>
+            <input
+              className={`w-full px-3 py-2 border rounded-lg ${
+                errors.confirmPassword ? "border-red-500" : "border-gray-300"
+              }`}
+              type="password"
+              id="confirmPassword"
+              name="confirmPassword"
+              value={formData.confirmPassword || ""}
+              onChange={handleChange}
+              placeholder="Confirm your password"
+            />
+            {errors.confirmPassword && (
+              <p className="text-red-500 text-xs mt-1">
+                {errors.confirmPassword}
+              </p>
+            )}
+          </div>
           {/* Role Selection */}
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2">
@@ -211,52 +262,29 @@ const Signup = () => {
                 )}
               </div>
 
-              {/* Social Media Handles */}
               <div className="mb-4">
                 <label
                   className="block text-gray-700 text-sm font-bold mb-2"
-                  htmlFor="socialMediaPlatform"
+                  htmlFor="socialMediaLink"
                 >
-                  Select Social Media Platform *
-                </label>
-                <select
-                  id="socialMediaPlatform"
-                  name="socialMediaPlatform"
-                  value={formData.socialMediaPlatform}
-                  onChange={handleChange}
-                  className="w-full px-3 py-2 border rounded-lg mb-4"
-                >
-                  <option value="facebook">Facebook</option>
-                  <option value="twitter">Twitter</option>
-                  <option value="instagram">Instagram</option>
-                  <option value="linkedin">LinkedIn</option>
-                  <option value="tiktok">TikTok</option>
-                </select>
-              </div>
-
-              <div className="mb-4">
-                <label
-                  className="block text-gray-700 text-sm font-bold mb-2"
-                  htmlFor="socialMediaHandle"
-                >
-                  Social Media Handle *
+                  Social Media Link *
                 </label>
                 <input
                   className={`w-full px-3 py-2 border rounded-lg ${
-                    errors.socialMediaHandle
+                    errors.socialMediaLink
                       ? "border-red-500"
                       : "border-gray-300"
                   }`}
                   type="text"
-                  id="socialMediaHandle"
-                  name="socialMediaHandle"
-                  value={formData.socialMediaHandle}
+                  id="socialMediaLink"
+                  name="socialMediaLink"
+                  value={formData.socialMediaLink}
                   onChange={handleChange}
-                  placeholder="Enter your social media handle"
+                  placeholder="Enter your social media link"
                 />
-                {errors.socialMediaHandle && (
+                {errors.socialMediaLink && (
                   <p className="text-red-500 text-xs mt-1">
-                    {errors.socialMediaHandle}
+                    {errors.socialMediaLink}
                   </p>
                 )}
               </div>
@@ -317,6 +345,10 @@ const Signup = () => {
             </button>
           </div>
         </form>
+        <div className="flex justify-center m-6">
+  <p className="font-bold ">Already have an account?</p>
+  <a  href="/login" className="text-blue-600 font-bold ml-2 hover:text-blue-400">   Log In </a>
+</div>
       </div>
     </div>
   );

@@ -37,7 +37,7 @@ function App() {
           <Route path="analytics" element={<Overview />} />
           <Route path="create-ad" element={<CreateAd />} />
           <Route path="ads" element={<VendorAds />} />
-          <Route path="single-ad" element={<VendorAdCard />} />
+          <Route path="single-ad/:id" element={<VendorAdCard />} />
           <Route path="reviews" element={<VendorReviews />} />
           <Route path="myprofile" element={<VendorProfile />} />
         </Route>
