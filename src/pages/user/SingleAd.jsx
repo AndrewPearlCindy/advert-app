@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
-import { TagIcon, ReceiptCentIcon, ArrowBigLeft } from "lucide-react";
+import {
+  TagIcon,
+  ReceiptCentIcon,
+  ArrowBigLeft,
+  Link2Icon,
+} from "lucide-react";
 import { apiGetSingleAdvert } from "../../services/adverts";
 
 const SingleAd = () => {
@@ -49,7 +54,7 @@ const SingleAd = () => {
         {/* Category badge */}
         <div className="absolute top-8 left-3 bg-red-600 text-white px-5 py-2 rounded-full text-s font-semibold flex items-center">
           <TagIcon size={12} className="mr-1" />
-          {ad.category}{" "}
+          {ad.category}
         </div>
       </div>
 
@@ -59,6 +64,20 @@ const SingleAd = () => {
           <h3 className="text-lg font-semibold text-gray-800">{ad.foodname}</h3>
           <p className="flex items-center text-lg font-bold text-red-600">
             <ReceiptCentIcon size={18} className="inline" /> {ad.price}
+          </p>
+        </div>
+
+        <div className="flex justify-between items-start">
+          <h3 className="text-lg font-semibold text-gray-800">{ad.shopName}</h3>
+          <p className="flex items-center text-lg font-bold text-red-600"></p>
+        </div>
+
+        <div className="flex justify-between items-start">
+          <h3 className="text-lg font-semibold text-gray-800">
+            {ad.vendorId?.socialMediaLink}
+          </h3>
+          <p className="flex items-center text-lg font-bold text-red-600">
+            <Link2Icon size={18} className="inline" /> {ad.openHours}
           </p>
         </div>
 

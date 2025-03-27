@@ -17,6 +17,7 @@ import VendorAdCard from "./pages/dashboard/VendorAdCard";
 import VendorReviews from "./pages/dashboard/VendorReviews";
 import VendorProfile from "./pages/dashboard/VendorProfile";
 import DashHome from "./pages/dashboard/DashHome";
+import EditVendorCard from "./pages/dashboard/EditVendorCard";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
           <Route path="create-ad" element={<CreateAd />} />
           <Route path="ads" element={<VendorAds />} />
           <Route path="single-ad/:id" element={<VendorAdCard />} />
+          <Route path="edit-ad/:id" element={<EditVendorCard />} />
           <Route path="reviews" element={<VendorReviews />} />
           <Route path="myprofile" element={<VendorProfile />} />
         </Route>

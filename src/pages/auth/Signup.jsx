@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
+import logo from "../../assets/images/vennace.png";
+
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -100,7 +102,11 @@ const Signup = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-[url('assets/images/Vendorloginbg.jpg')]">
       <div className="max-w-md w-full bg-white p-6 rounded-lg shadow-md ">
-        <h2 className="text-2xl font-bold mb-6 text-center">
+        <div className="flex justify-center mb-8 grid-cols-1 ">
+          
+          <img src={logo} alt="VENNACE" />
+        </div>
+        <h2 className="w-full flex justify-center bg-red-600 text-white text-2xl font-bold mb-8 py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline">
           Create an Account
         </h2>
 
@@ -339,16 +345,22 @@ const Signup = () => {
           <div className="mt-6">
             <button
               type="submit"
-              className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline"
+              className="w-full bg-black hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline"
             >
               Sign Up
             </button>
           </div>
         </form>
         <div className="flex justify-center m-6">
-  <p className="font-bold ">Already have an account?</p>
-  <a  href="/login" className="text-blue-600 font-bold ml-2 hover:text-blue-400">   Log In </a>
-</div>
+          <p className="font-bold ">Already have an account?</p>
+          <a
+            href="/login"
+            className="text-blue-600 font-bold ml-2 hover:text-blue-400"
+          >
+            {" "}
+            Log In{" "}
+          </a>
+        </div>
       </div>
     </div>
   );
