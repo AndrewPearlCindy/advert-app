@@ -11,6 +11,5 @@ apiCLinet.interceptors.request.use((config) => {
   const token = localStorage.getItem("authToken");
   //attach token to Authentication header
   config.headers.Authorization = `Bearer ${token}`;
-  //return config
-  return config;
+  //return config;
 });

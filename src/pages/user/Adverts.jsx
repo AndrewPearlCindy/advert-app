@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router-dom";
 import pancake from "../../assets/images/pancake.jpg";
 import mac from "../../assets/images/mac.jpg";
 import burger from "../../assets/images/burger.jpg";
@@ -9,12 +9,14 @@ const Adverts = () => {
   const [activeCategory, setActiveCategory] = useState("all");
   const navigate = useNavigate();
   const [ads, setAds] = useState([]);
+  const [filteredAds, setFilteredAds] = useState([]);
   const imageURL = "https://res.cloudinary.com/dyfpxokoj/image/upload/";
 
   const getAds = async () => {
     try {
       const response = await apiGetAllAdvert();
       setAds(response.data.adverts);
+      setFilteredAds(response.data.adverts);
     } catch (error) {
       console.log(error);
     }
@@ -24,27 +26,31 @@ const Adverts = () => {
     getAds();
   }, []);
 
+  // Filter function
+  const filterAds = (category) => {
+    setActiveCategory(category);
+
+    if (category === "all") {
+      setFilteredAds(ads);
+    } else {
+      const filtered = ads.filter(
+        (ad) => ad.category.toLowerCase() === category.toLowerCase()
+      );
+      setFilteredAds(filtered);
+    }
+  };
+
+  // Category buttons configuration
+  const categories = [
+    { name: "All", value: "all" },
+    { name: "Local", value: "local" },
+    { name: "Continental", value: "continental" },
+    { name: "Desserts", value: "desserts" },
+    { name: "Drinks", value: "drinks" },
+  ];
+
   return (
     <div className="min-h-screen bg-pink-100">
-      {/* Navigation */}
-      {/* <nav className="bg-white shadow-md px-4 py-4">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
-          <div className="flex items-center mb-4 md:mb-0">
-            <span className="text-red-500 font-bold text-2xl">Vennace</span>
-          </div>
-          <div className="flex items-center space-x-4">
-            <input  */}
-      {/* type="text" 
-              placeholder="Search for food or vendor..." 
-              className="px-4 py-2 border rounded-full w-64 focus:outline-none focus:ring-2 focus:ring-red-500 "
-            /> */}
-      {/* <button className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-full">
-              Cart (0)
-            </button> */}
-      {/* </div> */}
-      {/* // </div> */}
-      {/* // </nav> */}
-
       {/* Hero Banner */}
       <div className="bg-gradient-to-r from-red-500 to-red-500 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 text-center">
@@ -56,25 +62,19 @@ const Adverts = () => {
             vendors
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <button
-              // onClick={() => setActiveCategory("all")}
-              className="px-6 py-2 rounded-full font-medium"
-
-              // activeCategory === "all"
-              //   ? "bg-white text-red-600"
-              //   : "bg-red-600 text-white"
-            >
-              All Foods
-            </button>
-            <button
-              className="px-6 py-2 rounded-full font-medium"
-              //   activeCategory === category.id
-              //     ? "bg-white text-red-600"
-              //     : "bg-red-600 text-white"
-              // }`}
-            >
-              category name
-            </button>
+            {categories.map((category) => (
+              <button
+                key={category.value}
+                className={`px-6 py-2 rounded-full font-medium transition duration-300 ${
+                  activeCategory === category.value
+                    ? "bg-white text-red-500"
+                    : "bg-red-600 text-white hover:bg-red-700"
+                }`}
+                onClick={() => filterAds(category.value)}
+              >
+                {category.name}
+              </button>
+            ))}
           </div>
         </div>
       </div>
@@ -83,7 +83,7 @@ const Adverts = () => {
       <div className="max-w-7xl mx-auto px-4 py-12">
         {/* Food Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-          {ads.map((ad) => {
+          {filteredAds.map((ad) => {
             return (
               <div
                 key={ad.id}
@@ -92,8 +92,8 @@ const Adverts = () => {
                 <div className="h-48 overflow-hidden">
                   <img
                     src={`${imageURL}${ad.pictures[0]}`}
-                    alt="item name"
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                    alt={ad.foodname}
+                    className="w-full h-full object-cover hover:scale-95 transition-transform duration-300"
                   />
                 </div>
                 <div className="p-6">
@@ -105,18 +105,10 @@ const Adverts = () => {
                       {ad.price}
                     </span>
                   </div>
-                  {/* <p className="text-gray-600 mb-4">By {item.vendor}</p> */}
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center">
-                      <svg
-                        className="w-5 h-5 text-yellow-400"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                      </svg>
-                      <span className="ml-1 text-gray-700">item.rating</span>
-                    </div>
+                    <span className="text-sm text-gray-600 capitalize">
+                      {ad.category}
+                    </span>
                     <Link
                       to={`/adverts/${ad.id}`}
                       className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg text-sm transition duration-300"
@@ -129,15 +121,25 @@ const Adverts = () => {
             );
           })}
         </div>
+
+        {/* No results message */}
+        {filteredAds.length === 0 && (
+          <div className="text-center py-12">
+            <p className="text-xl text-gray-600">
+              No items found in this category.
+            </p>
+          </div>
+        )}
       </div>
 
-      {/* Vendor Spotlight Section */}
+      {/* ... (Vendor Spotlight, How It Works, Become a Vendor sections) */}
       <div className="bg-orange-50 py-16">
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12">
             Offers In Your Area!!!
           </h2>
           <p className="text-4xl text-center">Save 20% on delivery 🎉</p>
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-white p-6 rounded-xl shadow-md">
               <div className="flex items-center mb-4">
@@ -159,11 +161,7 @@ const Adverts = () => {
                 Join us for the most authentic pancakes in town! Family recipes
                 passed down through generations.
               </p>
-              {/* <button className="text-red-600 font-semibold hover:text-red-800">
-                View Menu →
-              </button> */}
             </div>
-
             <div className="bg-white p-6 rounded-xl shadow-md">
               <div className="flex items-center mb-4">
                 <div className="h-16 w-16 rounded-full overflow-hidden mr-4">
@@ -182,11 +180,7 @@ const Adverts = () => {
                 Our food is made fresh daily using only the finest ingredients.
                 Perfect for any occasion!
               </p>
-              {/* <button className="text-red-600 font-semibold hover:text-red-800">
-                View Menu →
-              </button> */}
             </div>
-
             <div className="bg-white p-6 rounded-xl shadow-md">
               <div className="flex items-center mb-4">
                 <div className="h-16 w-16 rounded-full overflow-hidden mr-4">
@@ -205,9 +199,6 @@ const Adverts = () => {
                 Healthy doesn't have to be boring! Our nutrient-packed meals are
                 both delicious and good for you.
               </p>
-              {/* <button className="text-red-600 font-semibold hover:text-red-800">
-                View Menu →
-              </button> */}
             </div>
           </div>
         </div>
@@ -249,7 +240,7 @@ const Adverts = () => {
         </div>
       </div>
 
-      {/* Become a Vendor CTA */}
+      {/* Become a Vendor  */}
       <div className="bg-gradient-to-r from-red-600 to-red-600 py-16 text-white">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-4">Are You a Food Vendor?</h2>
