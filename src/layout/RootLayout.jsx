@@ -6,7 +6,6 @@ import { Outlet } from "react-router";
 const RootLayout = () => {
   return (
     <div>
-      <Navbar />
       <Outlet />
       <Footer />
     </div>

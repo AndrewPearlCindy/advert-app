@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
+import logo from "../../assets/images/vennace.png";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -7,7 +8,7 @@ const Login = () => {
     password: "",
   });
 
-  const navigate=useNavigate()
+  const navigate = useNavigate();
 
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
@@ -71,7 +72,13 @@ const Login = () => {
 
       // Store token in local storage (if applicable)
       localStorage.setItem("authToken", data.token);
-      navigate('/dashboard/home')
+      if (data.user.role === "vendor") {
+        navigate("/dashboard/home");
+      } else if (data.user.role === "consumer") {
+        navigate("/adverts");
+      } else {
+        navigate("/adverts");
+      }
 
       // Redirect or navigate to dashboard
       alert("Login Successful!");
@@ -86,13 +93,18 @@ const Login = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-[url('assets/images/Customerloginbg.jpg')] bg-cover bg-center">
       <div className="max-w-md w-full bg-white p-6 rounded-lg shadow-md">
-        <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
+        <div className="flex justify-center mb-8 grid-cols-1 ">
+          <img src={logo} alt="VENNACE" />
+        </div>
+        <h2 className="w-full flex justify-center bg-red-600 text-white text-2xl font-bold mb-8 py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline">
+        Log into your Account
+        </h2>
 
         {serverError && (
           <p className="text-red-500 text-center mb-4">{serverError}</p>
         )}
 
-        <form onSubmit={handleSubmit} >
+        <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label
               className="block text-gray-700 text-sm font-bold mb-2"
@@ -142,7 +154,7 @@ const Login = () => {
           <div className="mt-6">
             <button
               type="submit"
-              className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline"
+              className="w-full bg-black hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline"
               disabled={loading}
             >
               {loading ? "Logging in..." : "Login"}
@@ -150,11 +162,16 @@ const Login = () => {
           </div>
         </form>
 
-<div className="flex justify-center m-6">
-  <p className="font-bold ">Don't have an account?</p>
-  <a  href="/signup" className="text-blue-600 font-bold ml-2 hover:text-blue-400">   Sign Up </a>
-</div>
-
+        <div className="flex justify-center m-6">
+          <p className="font-bold ">Don't have an account?</p>
+          <a
+            href="/signup"
+            className="text-blue-600 font-bold ml-2 hover:text-blue-400"
+          >
+            {" "}
+            Sign Up{" "}
+          </a>
+        </div>
       </div>
     </div>
   );

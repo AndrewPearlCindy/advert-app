@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { apiVerifyEmail } from "../../services/auth";
+import logo from "../../assets/images/vennace.png";
 
 const Verification = () => {
   const navigate = useNavigate();
@@ -45,9 +46,12 @@ const Verification = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-        <h2 className="text-2xl font-bold text-center mb-6">
+    <div className="min-h-screen flex items-center justify-center bg-[url('assets/images/Vendorloginbg.jpg')]">
+      <div className="max-w-md w-full bg-white p-6 rounded-lg shadow-md ">
+        <div className="flex justify-center mb-8 grid-cols-1 ">
+          <img src={logo} alt="VENNACE" />
+        </div>
+        <h2 className="w-full flex justify-center bg-red-600 text-white text-2xl font-bold mb-8 py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline">
           Verify Your Account
         </h2>
 
@@ -105,7 +109,7 @@ const Verification = () => {
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg focus:outline-none"
+            className="w-full bg-black hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline"
           >
             Verify
           </button>

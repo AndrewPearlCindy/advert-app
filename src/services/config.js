@@ -7,10 +7,9 @@ export const apiCLinet = axios.create({
 });
 
 apiCLinet.interceptors.request.use((config) => {
-  // get access token from localStorage
+  //get access to token from local storage
   const token = localStorage.getItem("authToken");
-  // attach token to authorization header
+  //attach token to Authentication header
   config.headers.Authorization = `Bearer ${token}`;
-  // return config
-  return config;
+  //return config;
 });
