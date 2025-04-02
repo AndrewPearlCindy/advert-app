@@ -1,16 +1,20 @@
 import React from "react";
 import { Facebook, Instagram, Twitter, Phone, Mail } from "lucide-react";
-import logo from "../assets/images/logovennace.png";
+import logo from "../assets/images/VENNACE.PNG";
+import { Link, useNavigate } from "react-router-dom";
+
 
 
 const Footer = () => {
   return (
-    <footer className="bg-[#FAF3E0] text-[#2C3E50] py-8">
+    <footer className="bg-black text-white py-8">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Logo and About Section */}
           <div className="mb-6 md:mb-0">
-        <img src={logo} alt="vennace" />
+       <Link to ="/">
+       <img src={logo} alt="vennace" />
+       </Link>
             
           </div>
 
@@ -27,7 +31,7 @@ const Footer = () => {
               <Mail className="mr-2 h-5 w-5" />
               info@vennace.com
             </p>
-            <p className="mt-2 text-[#2C3E50]">
+            <p className="mt-2 text-white">
               123 Culinary Street, Foodville, Accra 12345
             </p>
           </div>
@@ -37,7 +41,7 @@ const Footer = () => {
             <h2 className="inline-block text-xl font-semibold pb-2 mb-4 border-b-4 border-gray-700">
               Support
             </h2>
-            <p className="text-[#2C3E50]">
+            <p className="text-white">
               Our Customer Service Line Is Open 24/7
             </p>
           </div>
@@ -50,7 +54,7 @@ const Footer = () => {
             <div className="flex space-x-2">
               <a 
                 href="#" 
-                className="inline-flex items-center justify-center h-10 w-10 border border-gray-400 rounded-full hover:text-blue-500 hover:border-blue-500 transition-colors"
+                className="inline-flex items-center justify-center h-10 w-10 border border-gray-400 rounded-full hover:text-pink-500 hover:border-pink-500 transition-colors"
               >
                 <Instagram />
               </a>
@@ -62,7 +66,7 @@ const Footer = () => {
               </a>
               <a 
                 href="#" 
-                className="inline-flex items-center justify-center h-10 w-10 border border-gray-400 rounded-full hover:text-blue-500 hover:border-blue-500 transition-colors"
+                className="inline-flex items-center justify-center h-10 w-10 border border-gray-400 rounded-full hover:text-blue-800 hover:border-blue-800 transition-colors"
               >
                 <Facebook />
               </a>
@@ -70,7 +74,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-8 pt-6 border-t border-amber-700 text-center text-[#2C3E50]">
+        <div className="mt-8 pt-6 border-t border-red-700 text-center text-white">
           <p>&copy; {new Date().getFullYear()} Vennace. All rights reserved.</p>
         </div>
       </div>

@@ -32,6 +32,7 @@ const EditVendorCard = () => {
       const response = await apiUpdateAdvert(id, data);
       console.log(response.data);
       navigate(`/dashboard/ads`);
+      location.reload();
     } catch (error) {
       console.log(error);
     }

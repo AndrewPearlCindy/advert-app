@@ -41,7 +41,7 @@ const VendorAds = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {ads.map((ad) => (
           <div 
-            key={ad._id || ad.id} // Added unique key prop
+            key={ad._id || ad.id} 
             className="bg-red-100 rounded-lg shadow-lg overflow-hidden"
           >
             {/* Image carousel */}
