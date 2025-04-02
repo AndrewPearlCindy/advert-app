@@ -19,6 +19,13 @@ export const apiGetVendorAdvertById = async (id) =>
     },
   });
 
+export const apiGetVendorById = async (id) =>
+  apiCLinet.get(`/vendor-advert/${id}`, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
 export const apiUpdateAdvert = async (id, payload) =>
   apiCLinet.patch(`/adverts/${id}`, payload);
 

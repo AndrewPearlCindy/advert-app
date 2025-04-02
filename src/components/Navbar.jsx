@@ -109,7 +109,7 @@ const Navbar = () => {
 
               {/* Mobile Search */}
               <div className="space-y-4">
-                <select className="w-full bg-gray-100 text-black px-3 py-2 rounded-l border focus:outline-none">
+                <select className="w-full bg-gray-100 text-black px-3 py-2 rounded border focus:outline-none">
                   <option value="all">All</option>
                   <option value="local">Local</option>
                   <option value="continental">Continental</option>

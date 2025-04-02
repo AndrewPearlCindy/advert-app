@@ -19,6 +19,14 @@ const favoriteFoods = [
 ];
 
 const Favourites = () => {
+
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+ 
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+
   return (
     <div>
      
