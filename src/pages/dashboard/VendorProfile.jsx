@@ -66,7 +66,7 @@ const VendorProfile = () => {
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto my-16 bg-white rounded-xl shadow-lg overflow-hidden p-6 md:p-8">
+    <div className="w-full max-w-4xl mx-auto my-16 bg-red-100 rounded-xl shadow-lg overflow-hidden p-6 md:p-8">
       {/* Header with Shop Info and Edit Button */}
       <div className="flex justify-between items-start mb-6">
         <div>
