@@ -10,6 +10,9 @@ const Landing = () => {
   return (
     <div 
     className= "bg-[url(assets/images/fruit.png)]  bg-cover bg-center bg-fixed ">
+
+
+      
       {/* Hero Section */}
       <div className="flex flex-col items-center justify-center px-4 py-20 text-center">
         <img src={Venn} className="w-120" alt="Venn" />

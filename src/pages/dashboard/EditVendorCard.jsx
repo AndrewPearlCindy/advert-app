@@ -30,7 +30,7 @@ const EditVendorCard = () => {
     const data = new FormData(event.target);
     try {
       const response = await apiUpdateAdvert(id, data);
-      console.log(response.data);
+      console.log(response.data.advert);
       navigate(`/dashboard/ads`);
     } catch (error) {
       console.log(error);
